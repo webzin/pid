@@ -1,5 +1,5 @@
-/*var hosturl="http://198.38.88.53/pid/";*/
-var hosturl="http://localhost/pid/";
+var hosturl="http://198.38.88.53/pid/";
+/*var hosturl="http://localhost/pid/";*/
 /*! Extra inline scripts: atlanta-mobile.original 2016-12-29 */
     document.addEventListener("touchstart", function(){}, true);
     $(function() {

@@ -1,0 +1,86 @@
+<script> 	  //logout function
+$(".fa-sign-out").click(function(){
+localStorage.login="false";
+window.location.href = "login.html";
+});
+ 
+</script>
+
+
+<div class="w-container">
+<nav class="bg-gradient nav-menu" role="navigation" id="mySidenav">
+<a  class="btn-close-button nav-menu-link w-clearfix w-inline-block" href="#">
+<div class="icon-list-menu">
+   <div class="icon ion-android-close" onClick="closeNav()"></div>
+</div>
+<div class="nav-menu-titles" onClick="closeNav()">Close Menu</div>
+</a>
+<a class="nav-menu-link w-clearfix w-inline-block" data-load="1" href="profile.html">
+<div class="icon-list-menu">
+<i class="fa fa-home"></i> 
+</div>
+<div class="nav-menu-titles">Home</div>
+</a>
+<a class="nav-menu-link w-clearfix w-inline-block" data-load="1" href="add-load.html">
+<div class="icon-list-menu">
+<i class="fa fa-tasks"></i> 
+</div>
+<div class="nav-menu-titles">Add Load</div>
+</a>
+<a class="nav-menu-link w-clearfix w-inline-block" data-load="1" href="add-warrant.html">
+<div class="icon-list-menu">
+   <i class="fa fa-file"></i>
+</div>
+<div class="nav-menu-titles">Add Warrant</div>
+</a>
+<a class="nav-menu-link w-clearfix w-inline-block" data-load="1" href="add-bundle.html">
+<div class="icon-list-menu">
+   <i class="fa fa-support"></i> 
+</div>
+<div class="nav-menu-titles">Add Bundle</div>
+</a>
+<a class="nav-menu-link w-clearfix w-inline-block" data-load="1" href="load-report.html">
+<div class="icon-list-menu">
+   <i class="fa fa-align-justify"></i> 
+</div>
+<div class="nav-menu-titles">Load Reports</div>
+</a>
+<a class="nav-menu-link w-clearfix w-inline-block" data-load="1" href="warrant-report.html">
+<div class="icon-list-menu">
+   <i class="fa fa-align-center"></i> 
+</div>
+<div class="nav-menu-titles">Warrant Reports</div>
+</a>
+ 
+ 
+</nav>
+<div class="wrapper-mask" data-ix="menu-mask"></div>
+<a class="navbar-button left w-nav-button" data-load="1" href="#" id="signout"> 
+<div class="navbar-button left w-nav-button" data-ix="hide-navbar-icons" id="signout">
+
+<i id="signout" class="fa fa-sign-out"></i>
+
+</div>
+</a>
+
+<script>
+if(filename == 'profile.html'){document.getElementById("demo").innerHTML = "Profile";}
+if(filename == 'add-load.html'){document.getElementById("demo").innerHTML = "Add Load";}
+if(filename == 'add-warrant.html'){document.getElementById("demo").innerHTML = "Add Warrant";}
+if(filename == 'add-bundle.html'){document.getElementById("demo").innerHTML = "Add Bundle";}
+if(filename == 'loads.html'){document.getElementById("demo").innerHTML = "Load Records";}
+if(filename == 'warrants.html'){document.getElementById("demo").innerHTML = "Warrant Records";}
+if(filename == 'bundles.html'){document.getElementById("demo").innerHTML = "Bundle Records";}
+if(filename == 'warrant-report.html'){document.getElementById("demo").innerHTML = "Warrant Reports";}
+if(filename == 'load-report.html'){document.getElementById("demo").innerHTML = "Load Reports";}
+</script>
+<div class="navbar-title" id="demo"></div>
+
+<div class="navbar-button right w-nav-button" data-ix="hide-navbar-icons" id="menu-button">
+<div class="home-icon navbar-button-icon" onClick="openNav()">
+<i class="fa fa-bars"></i> 
+</div>
+</div>
+
+</div>
+            

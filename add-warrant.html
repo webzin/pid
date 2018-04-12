@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <title>Add Warrant</title>
+      <meta content="width=device-width,initial-scale=1" name="viewport">
+      <meta name="generator" content="SensationThemes">
+      <link href="css/normalize.css" rel="stylesheet" type="text/css">
+      <link href="css/webflow.css" rel="stylesheet" type="text/css">
+      <link href="css/styles.css" rel="stylesheet" type="text/css">
+      <link href="images/logo32.png" rel="shortcut icon" type="image/x-icon">
+      <link href="images/logo.png" rel="apple-touch-icon">
+      <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+                <link href="css/ionicons.min.css" rel="stylesheet" type="text/css">
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+                 <script src="js/jquery.min.js" type="text/javascript"></script>
+ 		<script src="js/modernizr.js" type="text/javascript"></script>
+ 
+	   <script src="js/webflow.js" type="text/javascript"></script>
+	   <script type="text/javascript" src="js/scripts.js"></script> 
+      <script type="text/javascript">
+    var url = window.location.pathname;
+    var filename = url.substring(url.lastIndexOf('/') + 1);
+    if (localStorage.login == "true" && filename == 'login.html') {
+        window.location.href = "profile.html";
+    } else if (localStorage.login == null) {
+        window.location.href = "login.html";
+    } else if (localStorage.login == "false" && filename != 'login.html') {
+        window.location.href = "login.html";
+    }
+    </script>
+ <script> 
+    $(function(){
+      $("#navbarin").load("nav.html"); 
+    });
+		 $(function(){
+      $("#footer").load("footer.html"); 
+    });
+	$(document).ready(function(){
+	
+$('#loads').load(hosturl+'mobdata.php?action=ld', '', function(response, status, xhr) {
+ 
+ 
+
+});
+ 
+ //Add Warrant
+$("#add-warrant").submit(function(){
+	
+	var loads=$("#loads").val();
+	var warrantno=$("#warrantno").val();
+	var dataString="loads="+loads+"&warrantno="+warrantno+"&warrant=";
+	if($.trim(loads).length>0 & $.trim(warrantno).length>0)
+	{
+		$.ajax({
+			type: "POST",
+			url: hosturl+"auth1.php?callback=?",
+			data: dataString,
+			crossDomain: true,
+			cache: false,
+			beforeSend: function(){ $("#warrant").html('Connecting...');},
+			success: function(data){
+				if(data=="success")
+				{
+				$('#sucessMessage').html('Warrant Added successfully !');
+				$('#sucessMessage').show();
+				$('#sucessMessage').delay(1000).fadeOut();
+				$("#warrantno").val(''); 
+				}
+				else if(data="failed")
+				{
+					alert("Login error");
+					$("#login").html('Login');
+				}
+			}
+		});
+	}return false;
+
+});
+
+});
+    </script>  
+   </head>
+   <body>
+      <section class="mobile-wrapper">
+         <div class="w-embed"></div>
+         <div class="page-content" id="main-stack">
+            <div class="navbar w-nav" data-animation="default" data-collapse="all" data-duration="700" id="navbarin">
+         
+         </div>
+            <div class="body padding">
+               <div class="w-form">
+                  <form action="#" data-name="Add Warrant" id="add-warrant" name="add-warrant">
+                     <div class="separator-button-input"></div>
+                     <div>
+                        <label class="label-form" for="full-name-field">Select a Load:</label><select class="input-form select w-select" id="loads" name="loads" required="required" >
+                        </select>
+                        <div class="separator-fields"></div>
+                     </div>
+                     <div>
+                        <label class="label-form" for="email-field">Warrant Number:</label><input class="input-form w-input" data-name="warrantno" id="warrantno" maxlength="256" name="warrantno" required="required" type="number" value="">
+                        <div class="separator-fields"></div>
+                     </div>
+                     
+                     
+                     
+                     <input class="action-button w-button" data-wait="Please wait..." type="submit" value="Add Warrant" id="warrant">
+                        <div class="separator-button"></div>
+                  </form>
+               </div>
+                 <div id="messageDiv">
+              <div id="sucessMessage"> </div>
+              <div id="failMessage"> </div>
+            </div>
+            </div>
+         </div>
+         <div class="loading-mask page-content" id="new-stack">
+            <div class="loading-icon">
+               <div class="icon ion-load-d navbar-button-icon"></div>
+            </div>
+         </div>
+      </section>
+      <script src="js/webfont.js"></script><script type="text/javascript">WebFont.load({
+         google: {
+           families: ["Montserrat:400,700"]
+         }
+         });
+      </script>
+      <div id="footer"></div> 
+   </body>
+</html>

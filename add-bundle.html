@@ -71,18 +71,20 @@ $("#add-bundle").submit(function(){
 			success: function(data){
 				if(data=="bndlsucess")
 				{
-				$('#sucessMessage').html('Bundle Added successfully !');
-				$('#sucessMessage').show();
-				$('#sucessMessage').delay(1000).fadeOut();
-				$("#batchid").val(''); 
-				$("#pieces").val(''); 
-				$("#listw").val(''); 
-				$("#scalew").val(''); 
+				
+				alert("Bundle Not added");
+					$("#login").html('Login');
+				
 				 
 				}
-				else if(data="bndlfailed")
+				else if(data="exist")
 				{
-					alert("Bundle Not added sucessfully");
+					alert("Batch Nmuber Already Exhist");
+					$("#login").html('Login');
+					
+				}else if(data="bndlfailed")
+				{
+					alert("Bundle Not added");
 					$("#login").html('Login');
 				}
 			}

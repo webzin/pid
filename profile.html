@@ -14,9 +14,7 @@
       <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
       <link href="css/ionicons.min.css" rel="stylesheet" type="text/css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
-<link rel="stylesheet" href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
-<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-<script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+         <script src="js/jquery.min.js" type="text/javascript"></script>
  		<script src="js/modernizr.js" type="text/javascript"></script>
 	   <script src="js/webflow.js" type="text/javascript"></script>
 	   <script type="text/javascript" src="js/scripts.js"></script> 
@@ -32,12 +30,14 @@
     }
     </script>
  <script> 
-    $(function(){
-      $("#navbarin").load("nav.html"); 
-    });
 	$(function(){
-      $("#footer").load("footer.html"); 
-    }); 
+	$("#navbarin").load("nav.html"); 
+	}); 
+	
+	$(function(){
+	$("#footer").load("footer.html"); 
+	}); 
+	
 	$(function(){
 	var nameurl=hosturl+"mobdata.php?action=name&email="+(localStorage.email);
 	$("#name").load(nameurl); 
@@ -52,14 +52,13 @@
 	  $(function(){
       $("#bc").load(hosturl+"mobdata.php?action=bc"); 
     });
-	
-	
-	$(document).ready(function(){
+$(document).ready(function(){
 	//Displaying user email on home page
     $("#email").html(localStorage.email);
-	/*var imageHash="https://pikmail.herokuapp.com/"+(localStorage.email);
-    $("#profilepic").attr('src',imageHash);*/
+	var imageHash="https://pikmail.herokuapp.com/"+(localStorage.email);
+    $("#profilepic").attr('src',imageHash);
 	});
+	
     </script> 
 
    </head>
@@ -168,7 +167,11 @@
             </div>
          </div>
          
-         <div id="footer"></div>
+         <div class="loading-mask page-content" id="new-stack">
+            <div class="loading-icon">
+               <div class="icon ion-load-d navbar-button-icon"></div>
+            </div>
+         </div>
       </section>
       <script src="js/webfont.js"></script><script type="text/javascript">WebFont.load({
          google: {
@@ -176,6 +179,6 @@
          }
          });
      </script>
-
+      <div id="footer"></div>
    </body>
 </html>

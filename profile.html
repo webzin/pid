@@ -57,9 +57,8 @@
 	$(document).ready(function(){
 	//Displaying user email on home page
     $("#email").html(localStorage.email);
-    var imageHash="https://pikmail.herokuapp.com/"+(localStorage.email);
-   
-    $("#profilepic").attr('src',imageHash);
+	/*var imageHash="https://pikmail.herokuapp.com/"+(localStorage.email);
+    $("#profilepic").attr('src',imageHash);*/
 	});
     </script> 
 
@@ -79,6 +78,7 @@
                      <div class="profile-avatar-name-container">
                         <div class="profile-avatar-name" id="name"></div>
                         <div class="profile-avatar-job" id="email"></div>
+                         
                      </div>
                   </div>
                   <div class="profile-figures">
@@ -110,7 +110,7 @@
                      </div>
                   </div>
                </div>
-               <nav class="gray w-nav-menu fullwidth" role="navigation">
+               <nav class="bg-gradient w-nav-menu fullwidth" role="navigation">
                      
                      <a class="nav-menu-link w-clearfix w-inline-block" data-load="1" href="add-load.html">
                         <div class="icon-list-menu">

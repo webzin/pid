@@ -1,5 +1,5 @@
 <script> 	  //logout function
-$(".fa-sign-out").click(function(){
+$("#signout").click(function(){
 localStorage.login="false";
 window.location.href = "login.html";
 });
@@ -51,15 +51,18 @@ window.location.href = "login.html";
 </div>
 <div class="nav-menu-titles">Warrant Reports</div>
 </a>
- 
+ <a class="nav-menu-link w-clearfix w-inline-block" data-load="1" href="#" id="signout">
+<div class="icon-list-menu" id="signout">
+<i id="signout" class="fa fa-sign-out"></i>
+</div>
+<div class="nav-menu-titles" id="signout">Sign Out</div>
+</a>
  
 </nav>
 <div class="wrapper-mask" data-ix="menu-mask"></div>
-<a class="navbar-button left w-nav-button" data-load="1" href="#" id="signout"> 
-<div class="navbar-button left w-nav-button" data-ix="hide-navbar-icons" id="signout">
-
-<i id="signout" class="fa fa-sign-out"></i>
-
+<a class="navbar-button left w-nav-button" data-load="1" href="profile.html"> 
+<div class="navbar-button left w-nav-button" data-ix="hide-navbar-icons">
+<img src="images/logo.png" alt="" />
 </div>
 </a>
 

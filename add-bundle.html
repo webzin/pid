@@ -115,12 +115,23 @@ crossDomain: true,
 cache: false,
 beforeSend: function(){ $("#bundle").html('Connecting...');},
 success: function(data, status){
- 
-				$('#sucessMessage').html(data);
+				
+				var resp = $.parseJSON(data);
+				  
+				$('#sucessMessage').html(resp.value1);
 				$('#sucessMessage').show();
 				$('#sucessMessage').delay(5000).fadeOut();
+				if(resp.value2=="E"){
 				$("#batchid").focus();
 				$("#batchid").val('');
+				}
+				else if(resp.value2=="S"){
+				$("#batchid").focus();
+				$("#batchid").val('');
+				$("#listw").val('');
+				$("#scalew").val('');
+				$("#pieces").val('');
+				}
 				$('#total').load(hosturl+'mobdata.php?action=tlw&wr='+warantno, '', function(response, status, xhr) { });
 				$('#totals').load(hosturl+'mobdata.php?action=tsw&wr='+warantno, '', function(response, status, xhr) { });
 				 

@@ -17,6 +17,7 @@
         <script src="js/modernizr.js" type="text/javascript"></script>
         <script src="js/webflow.js" type="text/javascript"></script>
         <script type="text/javascript" src="js/scripts.js"></script> 
+        <script type="text/javascript" src="js/jquery.validate.js"></script>
 		<script type="text/javascript">
 				var url = window.location.pathname;
 				var filename = url.substring(url.lastIndexOf('/') + 1);
@@ -36,63 +37,106 @@
 				$("#footer").load("footer.html"); 
 				});
 				
-				$(document).ready(function(){
-				$('#warrant').load(hosturl+'mobdata.php?action=wr', '', function(response, status, xhr) {
+$(document).ready(function(){
+
+				$('#warantno').load(hosturl+'mobdata.php?action=wr', '', function(response, status, xhr) {
 				});
 				$('#location').load(hosturl+'mobdata.php?action=lo', '', function(response, status, xhr) {
 				});
 				$('#brand').load(hosturl+'mobdata.php?action=br', '', function(response, status, xhr) {
 				});
-				
-				
-				
- //Add Warrant
-$("#add-bundle").submit(function(){
-	
-	var warrant=$("#warrant").val();
-	var batchid=$("#batchid").val();
-	var brand=$("#brand").val();
-	var pieces=$("#pieces").val();
-	var listw=$("#listw").val();
-	var scalew=$("#scalew").val();
-	var location=$("#location").val();
-	
-	
-	var dataString="warrant="+warrant+"&batchid="+batchid+"&brand="+brand+"&pieces="+pieces+"&listw="+listw+"&scalew="+scalew+"&location="+location+"&bundle=";
-	if($.trim(warrant).length>0 & $.trim(batchid).length>0)
-	{
-		$.ajax({
-			type: "POST",
-			url: hosturl+"auth1.php?callback=?",
-			data: dataString,
-			crossDomain: true,
-			cache: false,
-			beforeSend: function(){ $("#bundle").html('Connecting...');},
-			success: function(data){
-				if(data=="bndlsucess")
-				{
-				
-				alert("Bundle Not added");
-					$("#login").html('Login');
-				
-				 
+				$('#warantno').on('change', function() {
+				$('#total').load(hosturl+'mobdata.php?action=tlw&wr='+this.value, '', function(response, status, xhr) { });
+				$('#total').show();
+				/*$('#totals').load(hosturl+'mobdata.php?action=tsw&wr='+this.value, '', function(response, status, xhr) { });*/
+				});
+				$('#listw').focusout(function() {
+				var total=$("#total").text();
+				var listw=$("#listw").val();
+				var sum = parseInt(total) + parseInt(listw);
+			 	$('#total').hide();
+				$('#total1').html(sum).show();
+				if(sum > 3255) {
+				/*alert(sum+' is Higher then Specified Weight Limit 3255');*/
+				$('#total1').html(sum+' is Higher then Specified Weight Limit 3255, Please choose differnt warrant or add new one').show();
+				$("#listw").focus();
 				}
-				else if(data="exist")
-				{
-					alert("Batch Nmuber Already Exhist");
-					$("#login").html('Login');
-					
-				}else if(data="bndlfailed")
-				{
-					alert("Bundle Not added");
-					$("#login").html('Login');
-				}
+				});
+
+ $('#add-bundle').validate({ // initialize the plugin
+        rules: {
+            warrant: {
+                required: true,
+            },
+			 batchid: {
+                required: true,
+            },
+			 brand: {
+                required: true,
+            },
+			 pieces: {
+                required: true,
+            },
+			 listw: {
+                required: true,
+				max: 3255
+            },
+			 scalew: {
+                required: true,
+            },			 
+            location: {
+                required: true,
+            }
+			 },
+			messages: {
+			loads:  "Please Select a Load",
+			warrantno: "Please enter Warrant Number"
 			}
-		});
-	}return false;
+
+       
+    });
+
+	//Add Warrant
+$("#add-bundle").submit(function(){
+
+var warantno=$("#warantno").val();
+var batchid=$("#batchid").val();
+var brand=$("#brand").val();
+var pieces=$("#pieces").val();
+var listw=$("#listw").val();
+var scalew=$("#scalew").val();
+var location=$("#location").val();
+
+
+var dataString="warantno="+warantno+"&batchid="+batchid+"&brand="+brand+"&pieces="+pieces+"&listw="+listw+"&scalew="+scalew+"&location="+location+"&bundle=";
+if($.trim(warantno).length>0 & $.trim(batchid).length>0 & $.trim(brand).length>0 & $.trim(pieces).length>0 & $.trim(listw).length>0 & $.trim(scalew).length>0 & $.trim(location).length>0)
+{
+
+$.ajax({
+type: "POST",
+url: hosturl+"auth1.php?callback=?",
+data: dataString,
+crossDomain: true,
+cache: false,
+beforeSend: function(){ $("#bundle").html('Connecting...');},
+success: function(data, status){
+ 
+				$('#sucessMessage').html(data);
+				$('#sucessMessage').show();
+				$('#sucessMessage').delay(5000).fadeOut();
+				$("#batchid").focus();
+				$("#batchid").val('');
+				$('#total').load(hosturl+'mobdata.php?action=tlw&wr='+warantno, '', function(response, status, xhr) { });
+				$('#totals').load(hosturl+'mobdata.php?action=tsw&wr='+warantno, '', function(response, status, xhr) { });
+				 
+}
+});
+ 
+}return false;
 
 });
-				});
+
+});
         
         
         </script>  
@@ -106,10 +150,10 @@ $("#add-bundle").submit(function(){
          </div>
             <div class="body padding">
                <div class="w-form" id="output">
-                  <form action="#" data-name="Add Bundle" id="add-bundle" name="add-bundle">
+                  <form action="#" data-name="Add Bundle" id="add-bundle" name="add-bundle" method="post">
                      <div class="separator-button-input"></div>
                      <div>
-                        <label class="label-form" for="full-name-field">Select a Warrant:</label><select class="input-form select w-select" id="warrant" name="warrant" required="required">
+                        <label class="label-form" for="full-name-field">Select a Warrant:</label><select class="input-form select w-select" id="warantno" name="warantno" required="required">
                         
                         </select>
                         <div class="separator-fields"></div>
@@ -133,10 +177,13 @@ $("#add-bundle").submit(function(){
                         <label class="label-form" for="email-field">List Weight:</label><input class="input-form w-input" data-name="listw" id="listw" maxlength="256" name="listw" required="required" type="number" value="">
                         <div class="separator-fields"></div>
                      </div>
+                     <code id="total"></code>
+                     <code id="total1"></code>
                      <div>
                         <label class="label-form" for="email-field">Scale Weight:</label><input class="input-form w-input" data-name="scalew" id="scalew" maxlength="256" name="scalew" required="required" type="number" value="">
                         <div class="separator-fields"></div>
                      </div>
+                     
                      <div>
                         <label class="label-form" for="full-name-field">Location#:</label><select class="input-form select w-select" id="location" name="location" required="required">
                             
@@ -145,7 +192,7 @@ $("#add-bundle").submit(function(){
                      </div>
                      
                      
-                     <input class="action-button w-button" data-wait="Please wait..." type="submit" value="Add Bundle" id="warrant">
+                     <input class="action-button w-button" data-wait="Please wait..." type="submit" value="Add Bundle" id="bundle">
                         <div class="separator-button"></div>
                   </form>
                </div>

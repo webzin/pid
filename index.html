@@ -17,26 +17,43 @@
 	   <script src="js/webflow.js" type="text/javascript"></script>
 	   <script type="text/javascript" src="js/scripts.js"></script>
       
- <script> 
-    $(function(){
-      $("#navbarin").load("nav.html"); 
-    });
-    </script> 
+ <script type="text/JavaScript">
+$( document ).ready(function() {
+  return timedRedirect();
+});
+redirectTime = "5000";
+redirectURL = "login.html";
+function timedRedirect() {
+	$(".meter > span").each(function() {
+				$(this)
+					.data("origWidth", $(this).width())
+					.width(0)
+					.animate({
+						width: $(this).data("origWidth")
+					}, 5000);
+			});
+	setTimeout("location.href = redirectURL;",redirectTime);
+}
+</script>
+
    </head>
    <body>
       <section class="mobile-wrapper">
          <div class="w-embed"></div>
-         <div class="bg-gradient page-content" data-redirect="login.html" data-scroll="0" data-splash="5000" id="main-stack">
+         <div class="bg-gradient page-content" id="main-stack">
             <div class="body padding">
+            
                <div class="splash-logo">
-                  <div class="loading-icon splash">
-                     <div class="icon ion-load-d navbar-button-icon"></div>
-                  </div>
+                <div class="meter">
+                	<span style="width: 90%"></span>
+                </div>
+                   
                </div>
                
             </div>
          </div>
          <div class="loading-mask page-content" id="new-stack">
+         
             <div class="loading-icon">
                <div class="icon ion-load-d navbar-button-icon"></div>
             </div>

@@ -42,21 +42,32 @@
 	var nameurl=hosturl+"mobdata.php?action=name&email="+(localStorage.email);
 	$("#name").load(nameurl); 
     });
+	$(function(){
 	
-	  $(function(){
-      $("#lc").load(hosturl+"mobdata.php?action=lc"); 
-    });
-	  $(function(){
-      $("#wc").load(hosturl+"mobdata.php?action=wc"); 
-    });
-	  $(function(){
-      $("#bc").load(hosturl+"mobdata.php?action=bc"); 
-    });
-$(document).ready(function(){
+	function utype(data) {
+	localStorage.ut=data;
+	}
+	$.get(hosturl+"mobdata.php?action=utype&email="+(localStorage.email), utype);
+	 
+	});
+	$(function(){
+	$("#lc").load(hosturl+"mobdata.php?action=lc"); 
+	});
+	$(function(){
+	$("#wc").load(hosturl+"mobdata.php?action=wc"); 
+	});
+	$(function(){
+	$("#bc").load(hosturl+"mobdata.php?action=bc"); 
+	});
+	$(document).ready(function(){
 	//Displaying user email on home page
-    $("#email").html(localStorage.email);
+	$("#email").html(localStorage.email);
 	var imageHash="https://pikmail.herokuapp.com/"+(localStorage.email);
-    $("#profilepic").attr('src',imageHash);
+	$("#profilepic").attr('src',imageHash);
+	
+	
+
+	
 	});
 	
     </script> 
@@ -76,6 +87,7 @@ $(document).ready(function(){
                      <div class="profile-avatar"><img src="" id="profilepic" style="padding:5px;border:1px solid #ADABAB;border-radius:50px;height:75px;width:75px;" /> </div>
                      <div class="profile-avatar-name-container">
                         <div class="profile-avatar-name" id="name"></div>
+                        <div class="profile-avatar-name" id="name1"></div>
                         <div class="profile-avatar-job" id="email"></div>
                          
                      </div>
@@ -132,36 +144,41 @@ $(document).ready(function(){
 </a>
 <a class="nav-menu-link w-clearfix w-inline-block" data-load="1" href="loads.html">
 <div class="icon-list-menu">
-<i class="fa fa-home"></i> 
+<i class="fa fa-copy"></i> 
 </div>
 <div class="nav-menu-titles">Load Records</div>
 </a>
 <a class="nav-menu-link w-clearfix w-inline-block" data-load="1" href="warrants.html">
 <div class="icon-list-menu">
-<i class="fa fa-home"></i> 
+<i class="fa fa-edit"></i> 
 </div>
 <div class="nav-menu-titles">Warrant Records</div>
 </a>
 <a class="nav-menu-link w-clearfix w-inline-block" data-load="1" href="bundles.html">
 <div class="icon-list-menu">
-<i class="fa fa-home"></i> 
+<i class="fa fa-paste"></i> 
 </div>
 <div class="nav-menu-titles">Bundle Records</div>
 </a>
 
-<a class="nav-menu-link w-clearfix w-inline-block" data-load="1" href="load-report.html">
+<a class="nav-menu-link w-clearfix w-inline-block admin" data-load="1" href="load-report.html">
 <div class="icon-list-menu">
    <i class="fa fa-align-justify"></i> 
 </div>
 <div class="nav-menu-titles">Load Reports</div>
 </a>
-<a class="nav-menu-link w-clearfix w-inline-block" data-load="1" href="warrant-report.html">
+<a class="nav-menu-link w-clearfix w-inline-block admin" data-load="1" href="warrant-report.html">
 <div class="icon-list-menu">
    <i class="fa fa-align-center"></i> 
 </div>
 <div class="nav-menu-titles">Warrant Reports</div>
 </a> 
- 
+ <a class="nav-menu-link w-clearfix w-inline-block" data-load="1" href="#" id="signout">
+<div class="icon-list-menu" id="signout">
+<i id="signout" class="fa fa-sign-out"></i>
+</div>
+<div class="nav-menu-titles" id="signout">Sign Out</div>
+</a>
                      
                   </nav>
             </div>

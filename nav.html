@@ -1,14 +1,23 @@
-<script> 	  //logout function
-$("#signout").click(function(){
-localStorage.login="false";
-window.location.href = "login.html";
-});
+<script> 	  
+
+$(document).ready(function(){
+	
+	$("#signout").click(function(){
+	localStorage.clear();
+	window.location.href = "login.html";
+	});
+	
+	if (localStorage.ut == "U") {
+		$(".admin").hide();
+	} 
  
+}); 
+	
 </script>
 
 
 <div class="w-container">
-<nav class="bg-gradient nav-menu" role="navigation" id="mySidenav">
+<nav class="bg-gradient nav-menu visible" role="navigation" id="mySidenav">
 <a  class="btn-close-button nav-menu-link w-clearfix w-inline-block" href="#">
 <div class="icon-list-menu">
    <div class="icon ion-android-close" onClick="closeNav()"></div>
@@ -39,13 +48,33 @@ window.location.href = "login.html";
 </div>
 <div class="nav-menu-titles">Add Bundle</div>
 </a>
-<a class="nav-menu-link w-clearfix w-inline-block" data-load="1" href="load-report.html">
+
+<a class="nav-menu-link w-clearfix w-inline-block" data-load="1" href="loads.html">
+<div class="icon-list-menu">
+<i class="fa fa-copy"></i> 
+</div>
+<div class="nav-menu-titles">Load Records</div>
+</a>
+<a class="nav-menu-link w-clearfix w-inline-block" data-load="1" href="warrants.html">
+<div class="icon-list-menu">
+<i class="fa fa-edit"></i> 
+</div>
+<div class="nav-menu-titles">Warrant Records</div>
+</a>
+<a class="nav-menu-link w-clearfix w-inline-block" data-load="1" href="bundles.html">
+<div class="icon-list-menu">
+<i class="fa fa-paste"></i> 
+</div>
+<div class="nav-menu-titles">Bundle Records</div>
+</a>
+
+<a class="nav-menu-link w-clearfix w-inline-block admin" data-load="1" href="load-report.html">
 <div class="icon-list-menu">
    <i class="fa fa-align-justify"></i> 
 </div>
 <div class="nav-menu-titles">Load Reports</div>
 </a>
-<a class="nav-menu-link w-clearfix w-inline-block" data-load="1" href="warrant-report.html">
+<a class="nav-menu-link w-clearfix w-inline-block admin" data-load="1" href="warrant-report.html">
 <div class="icon-list-menu">
    <i class="fa fa-align-center"></i> 
 </div>

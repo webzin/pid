@@ -88,12 +88,7 @@ $(document).ready(function(){
                 required: true,
             }
 			 },
-			messages: {
-			loads:  "Please Select a Load",
-			warrantno: "Please enter Warrant Number"
-			}
-
-       
+			 
     });
 
 	//Add Warrant
@@ -149,7 +144,8 @@ success: function(data, status){
          
          </div>
             <div class="body padding">
-               <div class="w-form" id="output">
+               <div class="w-form">
+               <div id="sucessMessage"> </div>
                   <form action="#" data-name="Add Bundle" id="add-bundle" name="add-bundle" method="post">
                      <div class="separator-button-input"></div>
                      <div>

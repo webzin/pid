@@ -24,9 +24,14 @@
     else if(localStorage.login=="false" && filename != 'login.html'){window.location.href = "login.html";}
   </script>
  <script>
+ 	$(function(){
+				$("#navbarin").load("nav.html"); 
+				});
+				$(function(){
+				$("#footer").load("footer.html"); 
+				});
   //Login Function
       $(document).ready(function(){
-	  
 	  $('#signin').validate({ // initialize the plugin
         rules: {
             email: {
@@ -84,8 +89,11 @@ $("#signin").submit(function(event){
       <section class="mobile-wrapper">
          <div class="w-embed"></div>
          <div class="bg-gradient page-content" data-scroll="0" id="main-stack">
+         <div class="navbar w-nav" data-animation="default" data-collapse="all" data-duration="700" id="navbarin">
+         
+         </div>
             <div class="body padding">
-               
+               <div class="top-section padding">
                   <div class="w-form">
                      <form action="#" data-name="login" data-redirect="profile.html" id="signin" name="login-form">
                         <div>
@@ -111,6 +119,7 @@ $("#signin").submit(function(event){
                <div class="icon ion-load-d navbar-button-icon"></div>
             </div>
          </div>
+         <div id="footer"></div>
       </section>
       <script src="js/webfont.js"></script><script type="text/javascript">WebFont.load({
          google: {

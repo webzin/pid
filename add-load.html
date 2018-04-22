@@ -88,11 +88,13 @@ $("#addload").submit(function(){
 			beforeSend: function(){ $("#load").html('Connecting...');},
 			success: function(data){
 			 
+				$('html, body').animate({ scrollTop: $('#main-stack').offset().top }, 500);
 				$('#sucessMessage').html(data);
 				$('#sucessMessage').show();
 				$('#sucessMessage').delay(5000).fadeOut();
 				$("#orderno").val(''); 
 				$("#orderno").focus();
+
 				 
 			}
 			

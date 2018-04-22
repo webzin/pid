@@ -118,6 +118,7 @@ success: function(data, status){
 				
 				var resp = $.parseJSON(data);
 				  
+				$('html, body').animate({ scrollTop: $('#main-stack').offset().top }, 500);
 				$('#sucessMessage').html(resp.value1);
 				$('#sucessMessage').show();
 				$('#sucessMessage').delay(5000).fadeOut();
@@ -126,6 +127,7 @@ success: function(data, status){
 				$("#batchid").val('');
 				}
 				else if(resp.value2=="S"){
+				$('html, body').animate({ scrollTop: $('#main-stack').offset().top }, 500);
 				$("#batchid").focus();
 				$("#batchid").val('');
 				$("#listw").val('');
@@ -214,6 +216,7 @@ success: function(data, status){
                <div class="icon ion-load-d navbar-button-icon"></div>
             </div>
          </div>
+         <div id="footer"></div>
       </section>
       <script src="js/webfont.js"></script><script type="text/javascript">WebFont.load({
          google: {
@@ -221,6 +224,6 @@ success: function(data, status){
          }
          });
       </script> 
-<div id="footer"></div>
+
    </body>
 </html>

@@ -25,25 +25,21 @@
     $(function(){
       $("#navbarin").load("nav.html"); 
     });
+	$(function(){
+				$("#footer").load("footer.html"); 
+				});
     </script> 
    </head>
    <body>
       <section class="mobile-wrapper">
          <div class="w-embed"></div>
          <div class="bg-gradient page-content" data-scroll="0" id="main-stack">
-            <div class="navbar transparent w-nav" data-animation="default" data-collapse="all" data-doc-height="1" data-duration="700">
-               <div class="w-container">
-                  <div class="wrapper-mask" data-ix="menu-mask"></div>
-                  <div class="navbar-title">Sign Up</div>
-                  <a class="navbar-button w-inline-block" data-load="1" href="login.html">
-                     <div class="icon ion-ios-close-empty navbar-button-icon"></div>
-                  </a>
-               </div>
-            </div>
+            <div class="navbar w-nav" data-animation="default" data-collapse="all" data-duration="700" id="navbarin">
+         
+         </div>
             <div class="body padding">
-               <div class="logo-login"></div>
-               <div class="bottom-section padding">
-                  <div class="w-form">
+            <div class="top-section padding"></div>
+            <div class="w-form">
                      <form action="signup.html#" data-name="Email Form" data-redirect="settings.html" id="submit-form" name="email-form">
                         <div>
                            <input class="input-form light w-input" data-name="full-name" id="full-name-field" maxlength="256" name="full-name" placeholder="Full Name" required="required" type="text">
@@ -63,7 +59,8 @@
                         <a class="link-upper" data-load="1" href="login.html">Already have an account? <strong class="b-link">Sign in</strong></a>
                      </form>
                   </div>
-               </div>
+            <div class="bottom-section padding"></div>
+            <div class="logo-login"></div>
             </div>
          </div>
          <div class="loading-mask page-content" id="new-stack">
@@ -71,6 +68,7 @@
                <div class="icon ion-load-d navbar-button-icon"></div>
             </div>
          </div>
+         <div id="footer"></div>
       </section>
       <script src="js/webfont.js"></script><script type="text/javascript">WebFont.load({
          google: {

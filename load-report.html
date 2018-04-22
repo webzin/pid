@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html>
    <head>
-      <meta charset="utf-8">
-      <title>Profile</title>
-      <meta content="Profile" property="og:title">
-      <meta content="width=device-width,initial-scale=1" name="viewport">
-      <meta name="generator" content="SensationThemes">
-      <link href="css/normalize.css" rel="stylesheet" type="text/css">
-      <link href="css/webflow.css" rel="stylesheet" type="text/css">
-      <link href="css/styles.css" rel="stylesheet" type="text/css">
-      <link href="images/logo32.png" rel="shortcut icon" type="image/x-icon">
-      <link href="images/logo.png" rel="apple-touch-icon">
-      <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-      <link href="css/ionicons.min.css" rel="stylesheet" type="text/css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+            <meta charset="utf-8">
+            <title>Load Reports</title>
+            <meta content="Profile" property="og:title">
+            <meta content="width=device-width,initial-scale=1" name="viewport">
+            <meta name="generator" content="SensationThemes">
+            <link href="css/normalize.css" rel="stylesheet" type="text/css">
+            <link href="css/webflow.css" rel="stylesheet" type="text/css">
+            <link href="css/styles.css" rel="stylesheet" type="text/css">
+            <link href="images/logo32.png" rel="shortcut icon" type="image/x-icon">
+            <link href="images/logo.png" rel="apple-touch-icon">
+            <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+            <link href="css/ionicons.min.css" rel="stylesheet" type="text/css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
          <script src="js/jquery.min.js" type="text/javascript"></script>
  		<script src="js/modernizr.js" type="text/javascript"></script>
 	   <script src="js/webflow.js" type="text/javascript"></script>
@@ -41,8 +41,11 @@
 	$(function(){
 	$("#loaddata").load(hosturl+"mobdata.php?action=loadrep"); 
 	}); 
-
-	
+	$(window).load(function() {
+	setInterval(function() {
+	$("#loader").fadeOut("slow")
+	}, 3000);
+	});
 	
     </script> 
 
@@ -56,15 +59,13 @@
          </div>
           
             <div class="body" id="loaddata">
-               
-               
-            </div>
-         </div>
+            
+            
+                        </div>
+        </div>
          
-         <div class="loading-mask page-content" id="new-stack">
-            <div class="loading-icon">
-               <div class="icon ion-load-d navbar-button-icon"></div>
-            </div>
+         <div id="loader">
+         
          </div>
       </section>
       <script src="js/webfont.js"></script><script type="text/javascript">WebFont.load({

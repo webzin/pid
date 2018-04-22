@@ -439,7 +439,7 @@ a.nav-menu-link:hover {
 }
 
 .logo-login {
-	height: 100px;
+	height: 50px;
 	background-image: url('../images/logo.png');
 	background-position: 50% 50%;
 	background-size: 130px;
@@ -823,7 +823,7 @@ input.error,select.error {
   z-index: 50;
   display: none;
   background-color: #000;
-  opacity: 0.6;
+  opacity: 1;
   -webkit-transition: opacity 250ms linear;
   transition: opacity 250ms linear;
   text-align: center;
@@ -856,7 +856,7 @@ input.error,select.error {
 .loading-icon.splash {
   top: 70%;
   width: 30px;
-  color: hsla(0, 0%, 100%, .17);
+  color: #000;
   font-size: 36px;
 }
 
@@ -878,10 +878,10 @@ input.error,select.error {
 	position: absolute;
 	left: 0px;
 	top: 0px;
-	width: 100%;
+	width: 90%;
 	height: 100%;
 	background-image: url('../images/logo.png');
-	background-position: 50% 38%;
+	background-position: 55% 45%;
 	background-size: 121px;
 	background-repeat: no-repeat;
 }
@@ -2197,7 +2197,7 @@ transition: background 0.2s ease,
 	height: 20px;  /* Can be anything */
 	margin-top: 400px;
 	border: solid 1px #fff;
-	width:90%;
+	width:100%;
 	margin-right: 5%;
 	margin-left: 5%;
 
@@ -2260,3 +2260,18 @@ background-color: #fff;
 .red{color:red;}
 .green{color:green;}
 #sucessMessage {margin-top:20px;}
+.top-section {padding-top:50px;}
+
+#loader {
+	position: fixed;
+	left: 0px;
+	top: 53px;
+	bottom:50px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background-color: #fff;
+	background-image: url(../img/loading.gif);
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+}

@@ -50,11 +50,7 @@ $('#loads').load(hosturl+'mobdata.php?action=ld', '', function(response, status,
                 required: true,
             }
 			 },
-			messages: {
-			loads:  "Please Select a Load",
-			warrantno: "Please enter Warrant Number"
-			}
-
+			
        
     });
  
@@ -75,6 +71,7 @@ $("#add-warrant").submit(function(){
 			beforeSend: function(){ $("#warrant").html('Connecting...');},
 			success: function(data){
 			 
+				$('html, body').animate({ scrollTop: $('#main-stack').offset().top }, 500);
 				$('#sucessMessage').html(data);
 				$('#sucessMessage').show();
 				$('#sucessMessage').delay(5000).fadeOut();

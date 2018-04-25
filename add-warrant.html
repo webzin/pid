@@ -37,9 +37,15 @@
       $("#footer").load("footer.html"); 
     });
 	$(document).ready(function(){
+var lid = localStorage.getItem('lid');
+  
 	
-$('#loads').load(hosturl+'mobdata.php?action=ld', '', function(response, status, xhr) {
+$('#loads').load(hosturl+'mobdata.php?action=ld&ld='+lid, '', function(response, status, xhr) {
 });
+
+
+
+
  $('#add-warrant').validate({ // initialize the plugin
         rules: {
             loads: {
@@ -68,15 +74,22 @@ $("#add-warrant").submit(function(){
 			data: dataString,
 			crossDomain: true,
 			cache: false,
-			beforeSend: function(){ $("#warrant").html('Connecting...');},
-			success: function(data){
+			beforeSend: function(){ $("#warrant").val('Adding Warrant...');},
+			success: function(data, status){
+			
+				var resp = $.parseJSON(data);
 			 
 				$('html, body').animate({ scrollTop: $('#main-stack').offset().top }, 500);
-				$('#sucessMessage').html(data);
+				$('#sucessMessage').html(resp.value1);
 				$('#sucessMessage').show();
 				$('#sucessMessage').delay(5000).fadeOut();
 				$("#warrantno").val('');
 				$("#warrantno").focus(); 
+				$("#warrant").val('Add Warrant');
+				if(resp.value3=="S"){
+				localStorage.wid=resp.value2;
+				window.location.href = "add-bundle.html";
+				}
 				 
 			}
 		});

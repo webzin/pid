@@ -38,8 +38,8 @@
 				});
 				
 $(document).ready(function(){
-
-				$('#warantno').load(hosturl+'mobdata.php?action=wr', '', function(response, status, xhr) {
+				var wid = localStorage.getItem('wid');
+				$('#warantno').load(hosturl+'mobdata.php?action=wr&wd='+wid, '', function(response, status, xhr) {
 				});
 				$('#location').load(hosturl+'mobdata.php?action=lo', '', function(response, status, xhr) {
 				});
@@ -113,7 +113,7 @@ url: hosturl+"auth1.php?callback=?",
 data: dataString,
 crossDomain: true,
 cache: false,
-beforeSend: function(){ $("#bundle").html('Connecting...');},
+beforeSend: function(){ $("#bundle").val('Connecting...');},
 success: function(data, status){
 				
 				var resp = $.parseJSON(data);

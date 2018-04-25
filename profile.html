@@ -30,44 +30,19 @@
     }
     </script>
  <script> 
-	$(function(){
-	$("#navbarin").load("nav.html"); 
-	}); 
-	
-	$(function(){
-	$("#footer").load("footer.html"); 
-	}); 
-	
-	$(function(){
-	var nameurl=hosturl+"mobdata.php?action=name&email="+(localStorage.email);
-	$("#name").load(nameurl); 
-    });
-	$(function(){
-	
-	function utype(data) {
-	localStorage.ut=data;
-	}
-	$.get(hosturl+"mobdata.php?action=utype&email="+(localStorage.email), utype);
 	 
-	});
-	$(function(){
-	$("#lc").load(hosturl+"mobdata.php?action=lc"); 
-	});
-	$(function(){
-	$("#wc").load(hosturl+"mobdata.php?action=wc"); 
-	});
-	$(function(){
-	$("#bc").load(hosturl+"mobdata.php?action=bc"); 
-	});
 	$(document).ready(function(){
+	$("#navbarin").load("nav.html"); 
+	$("#footer").load("footer.html"); 
+	$("#lc").load(hosturl+"mobdata.php?action=lc"); 
+	$("#wc").load(hosturl+"mobdata.php?action=wc"); 
+	$("#bc").load(hosturl+"mobdata.php?action=bc");
 	//Displaying user email on home page
+	$("#name").html(localStorage.name); 
+	$("#mobile").html(localStorage.mobile); 
 	$("#email").html(localStorage.email);
 	var imageHash="https://pikmail.herokuapp.com/"+(localStorage.email);
 	$("#profilepic").attr('src',imageHash);
-	
-	
-
-	
 	});
 	
     </script> 
@@ -87,7 +62,7 @@
                      <div class="profile-avatar"><img src="" id="profilepic" style="padding:5px;border:1px solid #ADABAB;border-radius:50px;height:75px;width:75px;" /> </div>
                      <div class="profile-avatar-name-container">
                         <div class="profile-avatar-name" id="name"></div>
-                        <div class="profile-avatar-name" id="name1"></div>
+                        <div class="profile-avatar-name" id="mobile"></div>
                         <div class="profile-avatar-job" id="email"></div>
                          
                      </div>

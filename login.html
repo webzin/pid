@@ -24,14 +24,10 @@
     else if(localStorage.login=="false" && filename != 'login.html'){window.location.href = "login.html";}
   </script>
  <script>
- 	$(function(){
-				$("#navbarin").load("nav.html"); 
-				});
-				$(function(){
-				$("#footer").load("footer.html"); 
-				});
+
   //Login Function
-      $(document).ready(function(){
+$(document).ready(function(){
+	  
 	  $('#signin').validate({ // initialize the plugin
         rules: {
             email: {
@@ -63,21 +59,34 @@ $("#signin").submit(function(event){
 			dataType: "html",
 			crossDomain: true,
 			cache: false,
-			beforeSend: function(){ $("#login").html('Connecting...');},
-			success: function(data){
-				if(data=="success")
-				{
-				 	  
-					localStorage.login="true";
-					localStorage.email=email;
-					window.location.href = "profile.html";
+			beforeSend: function(){ 
+			$("#login").val('Loging you in................');
+			$('#new-stack').removeClass('stop-loading');
+			},
+			success: function(data, status){
+			
+				var resp = $.parseJSON(data);
+			 
+			
+				$('#sucessMessage').html(resp.value1);
+				$('#sucessMessage').show();
+				$('#sucessMessage').delay(5000).fadeOut();
+ 				$("#login").val('Login');
+				if(resp.value2=="S"){
+				localStorage.login="true";
+				localStorage.email=email;
+				localStorage.name=resp.value3;
+				localStorage.mobile=resp.value4;
+				localStorage.ut=resp.value5;
+				window.location.href = "profile.html";
 				}
-				else if(data="failed")
-				{
-					alert("Login error");
-					$("#login").html('Login');
+				else{
+				$("#login").val('Login');
+				$('#new-stack').addClass('stop-loading')
 				}
+				 
 			}
+			
 		});
 	}
 	event.preventDefault();
@@ -86,12 +95,13 @@ $("#signin").submit(function(event){
     </script> 
    </head>
    <body>
-      <section class="mobile-wrapper">
+   <div id="sucessMessage">
+    
+</div>
+<section class="mobile-wrapper">
          <div class="w-embed"></div>
          <div class="bg-gradient page-content" data-scroll="0" id="main-stack">
-         <div class="navbar w-nav" data-animation="default" data-collapse="all" data-duration="700" id="navbarin">
          
-         </div>
             <div class="body padding">
                <div class="top-section padding">
                   <div class="w-form">
@@ -119,7 +129,8 @@ $("#signin").submit(function(event){
                <div class="icon ion-load-d navbar-button-icon"></div>
             </div>
          </div>
-         <div id="footer"></div>
+         </div>
+         
       </section>
       <script src="js/webfont.js"></script><script type="text/javascript">WebFont.load({
          google: {

@@ -106,17 +106,18 @@ a {
 }
 
 .navbar-button {
-  position: relative;
-  width: 45px;
-  height: 45px;
-  padding: 0px;
-  color: #fff;
-  line-height: 49px;
-  text-align: center;
+	position: relative;
+	width: 45px;
+	height: 45px;
+	padding: 0px;
+	color: #fff;
+	line-height: 49px;
+	text-align: center;
 }
 
 .navbar-button.left {
-  float: left;
+	float: left;
+	margin-top: -2px;
 }
 
 .navbar-button.left.w--open {
@@ -822,11 +823,12 @@ input.error,select.error {
   position: fixed;
   z-index: 50;
   display: none;
-  background-color: #000;
+  background-color: #1775ff82;
   opacity: 1;
   -webkit-transition: opacity 250ms linear;
   transition: opacity 250ms linear;
   text-align: center;
+  top:0;
 }
 
 .page-content.loading-mask.stop-loading {
@@ -2257,9 +2259,8 @@ background-position: 50px 50px;
 background-color: #fff;
 
 }
-.red{color:red;}
-.green{color:green;}
-#sucessMessage {margin-top:20px;}
+.red{color:red !important;}
+.green{color:green !important;}
 .top-section {padding-top:50px;}
 
 #loader {
@@ -2270,8 +2271,51 @@ background-color: #fff;
 	width: 100%;
 	height: 100%;
 	z-index: 9999;
-	background-color: #fff;
-	background-image: url(../img/loading.gif);
-	background-repeat: no-repeat;
-	background-position: 50% 50%;
+	background-color: #fff; 
+}
+.lds-dual-ring {
+  display: inline-block;
+  width: 64px;
+  height: 64px;
+  margin:18% 48%;
+}
+.lds-dual-ring:after {
+  content: " ";
+  display: block;
+  width: 46px;
+  height: 46px;
+  margin: 1px;
+  border-radius: 50%;
+  border: 5px solid #1775ff;
+  border-color: #6477ff82 #1775ff #6477ff82 #1775ff;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+#sucessMessage {
+    display:none;
+     position: absolute;
+     left: 0px;
+     top: 0px;
+     width:100%;
+     height:100%;
+     text-align:center;
+     z-index: 1000;
+     background-color:#1775ff82;
+}
+#sucessMessage div {
+	width:80%;
+	margin: 15% auto;
+	background-color: #e9e9e9e6;
+	border:5px solid #404a6e;
+	border-radius:15px;
+	padding:15px;
+	text-align:center;
+	color:#FFFFFF;
 }

@@ -2271,43 +2271,21 @@ background-color: #fff;
 	width: 100%;
 	height: 100%;
 	z-index: 9999;
-	background-color: #fff; 
+	background: url('https://auroracloud.com.au/MontageDemo/images/preloader.gif') 50% 50% no-repeat rgb(249,249,249);
+	
+
 }
-.lds-dual-ring {
-  display: inline-block;
-  width: 64px;
-  height: 64px;
-  margin:18% 48%;
-}
-.lds-dual-ring:after {
-  content: " ";
-  display: block;
-  width: 46px;
-  height: 46px;
-  margin: 1px;
-  border-radius: 50%;
-  border: 5px solid #1775ff;
-  border-color: #6477ff82 #1775ff #6477ff82 #1775ff;
-  animation: lds-dual-ring 1.2s linear infinite;
-}
-@keyframes lds-dual-ring {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
+ 
 #sucessMessage {
-    display:none;
-     position: absolute;
-     left: 0px;
-     top: 0px;
-     width:100%;
-     height:100%;
-     text-align:center;
-     z-index: 1000;
-     background-color:#1775ff82;
+	display:none;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width:100%;
+	height:100%;
+	text-align:center;
+	z-index: 1000;
+	background-color:#1775ff82;
 }
 #sucessMessage div {
 	width:80%;

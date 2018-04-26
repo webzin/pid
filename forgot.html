@@ -16,52 +16,59 @@
 	   <script src="js/jquery.min.js" type="text/javascript"></script>
 	   <script src="js/webflow.js" type="text/javascript"></script>
 	   <script type="text/javascript" src="js/scripts.js"></script> 
+       <script type="text/javascript" src="js/jquery.validate.js"></script>
       <script type="text/javascript">
     var url = window.location.pathname;var filename = url.substring(url.lastIndexOf('/')+1);
     if(localStorage.login=="true" && filename == 'login.html'){window.location.href = "profile.html";}
-    else if(localStorage.login=="false" && filename != 'login.html'){window.location.href = +filename+;}
-  </script>
-<script>
-
-  //Login Function
-      $(document).ready(function(){
-	  $('#forgot-form').validate({ // initialize the plugin
+    else if(localStorage.login=="false" && filename != 'login.html'){window.location.href = "login.html";}
+	
+$(document).ready(function(){
+	  
+	  $('#forgot').validate({ // initialize the plugin
         rules: {
             email: {
                 required: true,
                 email: true
-            },
-                
+            } 
+			 },
+			 
+
+       
     });
 	  
 	  
 //Forget Password
-    $("#forget_password").click(function(){
+$("#forgot").submit(function(event){
     	var email=$("#email").val();
     	var dataString="email="+email+"&forgot=";
     	if($.trim(email).length>0)
 		{
 			$.ajax({
 				type: "POST",
-				url: url,
+				url: hosturl+"auth1.php?callback=?",
 				data: dataString,
 				crossDomain: true,
 				cache: false,
-				beforeSend: function(){ $("#forgot").val('Generating Your Password...');},
+				beforeSend: function(){ $("#forgetpass").val('Generating Your Password...');},
 				success: function(data){
 					if(data=="invalid")
 					{
 						alert("Your have not registered with us");
+						$("#forgetpass").val('Remember me');
 					}
 					else if(data="success")
 					{
 						alert("we have sent password to your email address, please check");
+						$("#forgetpass").val('Password Generated Please check your email...');
+						window.location.href = "login.html";
 					}
 				}
 			});
 		}return false;
 
     });
+	
+	});
     </script>
    </head>
    <body>
@@ -77,7 +84,7 @@
                            <input class="input-form light w-input" data-name="email" id="email" maxlength="256" name="email" placeholder="email@email.com" type="email" value=" ">
                            <div class="separator-button"></div>
                         </div>
-                        <input class="action-button w-button" data-wait="Please wait..." type="submit" value="Remember me">
+                        <input class="action-button w-button" data-wait="Please wait..." type="submit" value="Remember me" id="forgetpass">
                         <div class="separator-button"></div>
                         <a class="link-upper" data-load="1" href="signup.html">Don't have an account? <strong class="b-link">Sign up</strong></a>
                      </form>

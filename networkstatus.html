@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Online / Offline Checking</title>
+
+    
+	<script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
+     <script type="text/javascript" charset="utf-8">
+
+    // Wait for PhoneGap to load
+    // 
+    document.addEventListener("deviceready", onDeviceReady, false);
+
+    // PhoneGap is loaded and it is now safe to make calls PhoneGap methods
+    //
+    function onDeviceReady() {
+        checkConnection();
+    }
+
+    function checkConnection() {
+        var networkState = navigator.network.connection.type;
+
+        var states = {};
+        states[Connection.UNKNOWN]  = 'Unknown connection';
+        states[Connection.ETHERNET] = 'Ethernet connection';
+        states[Connection.WIFI]     = 'WiFi connection';
+        states[Connection.CELL_2G]  = 'Cell 2G connection';
+        states[Connection.CELL_3G]  = 'Cell 3G connection';
+        states[Connection.CELL_4G]  = 'Cell 4G connection';
+        states[Connection.NONE]     = 'No network connection';
+
+        /*alert('Connection type: ' + states[networkState]);
+		navigator.app.exitApp();*/
+	if (networkState == Connection.NONE)
+	{
+		jQuery.alerts.dialogClass = 'alert-danger';
+									jAlert("I'm sorry, Ticketfiler needs to be connected to the Internet to process your ticket. Please check your internet connection and try again! Thank you for your patience.<br>Brian Molloy<br>CEO Ticketfiler", 'Ticketfiler', function(){
+                          		    jQuery.alerts.dialogClass = null; // reset to default
+									if (navigator.userAgent.match(/(iPhone|iPod|iPad)/)) {
+										window.location.href="sorry.html";
+									}
+									else
+									{
+										navigator.app.exitApp();
+									}
+                                    });
+									
+		/*navigator.notification.alert(
+		"There was an error connecting to the Internet check settings. Would you like to retry?.",
+		"No Internet connection",
+		"No",
+		"Yes",
+		{
+		onClose: function(buttonIndex) {
+		if (buttonIndex == 1)
+		retryConnection();
+		}
+		}
+		);
+		if (navigator.userAgent.match(/(iPhone|iPod|iPad)/)) {
+			exit(0);
+		}
+		else
+		{
+			navigator.app.exitApp();
+		}*/
+
+    }
+	else
+	{
+                   
+    }
+}
+
+    </script>
+  </head>
+  <body onload="onLoad()">
+  </body>
+</html>

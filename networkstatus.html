@@ -4,8 +4,20 @@
     <title>Online / Offline Checking</title>
 
     
-	<script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
-     <script type="text/javascript" charset="utf-8">
+	<link href="css/normalize.css" rel="stylesheet" type="text/css">
+      <link href="css/webflow.css" rel="stylesheet" type="text/css">
+      <link href="css/styles.css" rel="stylesheet" type="text/css">
+      <link href="images/logo32.png" rel="shortcut icon" type="image/x-icon">
+      <link href="images/logo.png" rel="apple-touch-icon">
+      <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=yes">
+      <link href="css/ionicons.min.css" rel="stylesheet" type="text/css">
+		<script src="js/modernizr.js" type="text/javascript"></script>
+        <script src="js/jquery.min.js" type="text/javascript"></script>
+        <script src="js/webflow.js" type="text/javascript"></script>
+        <script type="text/javascript" src="js/scripts.js"></script>
+	<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+ 
+         <script type="text/javascript" charset="utf-8">
 
     // Wait for PhoneGap to load
     // 
@@ -13,6 +25,10 @@
 
     // PhoneGap is loaded and it is now safe to make calls PhoneGap methods
     //
+	function exitFromApp()
+             {
+                navigator.app.exitApp();
+             }
     function onDeviceReady() {
         checkConnection();
     }
@@ -28,52 +44,26 @@
         states[Connection.CELL_3G]  = 'Cell 3G connection';
         states[Connection.CELL_4G]  = 'Cell 4G connection';
         states[Connection.NONE]     = 'No network connection';
-
-        /*alert('Connection type: ' + states[networkState]);
+		/*	alert('Connection type: ' + states[networkState]);
 		navigator.app.exitApp();*/
-	if (networkState == Connection.NONE)
+	if (networkState == Connection.NONE || networkState == Connection.UNKNOWN)
 	{
-		jQuery.alerts.dialogClass = 'alert-danger';
-									jAlert("I'm sorry, Ticketfiler needs to be connected to the Internet to process your ticket. Please check your internet connection and try again! Thank you for your patience.<br>Brian Molloy<br>CEO Ticketfiler", 'Ticketfiler', function(){
-                          		    jQuery.alerts.dialogClass = null; // reset to default
-									if (navigator.userAgent.match(/(iPhone|iPod|iPad)/)) {
-										window.location.href="sorry.html";
-									}
-									else
-									{
-										navigator.app.exitApp();
-									}
-                                    });
-									
-		/*navigator.notification.alert(
-		"There was an error connecting to the Internet check settings. Would you like to retry?.",
-		"No Internet connection",
-		"No",
-		"Yes",
-		{
-		onClose: function(buttonIndex) {
-		if (buttonIndex == 1)
-		retryConnection();
-		}
-		}
-		);
-		if (navigator.userAgent.match(/(iPhone|iPod|iPad)/)) {
-			exit(0);
-		}
-		else
-		{
-			navigator.app.exitApp();
-		}*/
-
+	 document.getElementById("content").innerHTML="<div>I'm sorry, You needs to be connected to the Internet to process. Please check your internet connection and try again! Thank you for your patience<br><button name='buttonClick' onclick='exitFromApp()'>Exit!!!!</button></div>";
     }
 	else
 	{
-                   
+      window.location.href="login.html";             
     }
 }
 
     </script>
   </head>
-  <body onload="onLoad()">
+  <body onLoad="onLoad()">
+   <section class="mobile-wrapper">
+ 
+         <div class="bg-gradient page-content" id="main-stack">
+  <div id="content"></div>
+  </div>
+  </section>
   </body>
 </html>

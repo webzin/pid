@@ -28,16 +28,23 @@
     } else if (localStorage.login == "false" && filename != 'login.html') {
         window.location.href = "login.html";
     }
+ 
     </script>
  <script> 
 	 
 	$(document).ready(function(){
+	
+	
+	
 	$("#navbarin").load("nav.html"); 
 	$("#footer").load("footer.html"); 
 	$("#lc").load(hosturl+"mobdata.php?action=lc"); 
 	$("#wc").load(hosturl+"mobdata.php?action=wc"); 
 	$("#bc").load(hosturl+"mobdata.php?action=bc");
+	$("#myinv").load(hosturl+"mobdata.php?action=myinv");
+	
 	//Displaying user email on home page
+	$("#comp").html(localStorage.comp); 
 	$("#name").html(localStorage.name); 
 	$("#mobile").html(localStorage.mobile); 
 	$("#email").html(localStorage.email);
@@ -61,12 +68,15 @@
                   <div class="profile-header">
                      <div class="profile-avatar"><img src="" id="profilepic" style="padding:5px;border:1px solid #ADABAB;border-radius:50px;height:75px;width:75px;" /> </div>
                      <div class="profile-avatar-name-container">
-                        <div class="profile-avatar-name" id="name"></div>
+                        
+                         <div class="profile-avatar-name" id="comp"></div>
+                         <div class="profile-avatar-name" id="name"></div>
                         <div class="profile-avatar-name" id="mobile"></div>
                         <div class="profile-avatar-job" id="email"></div>
                          
                      </div>
                   </div>
+                  <div class="admin">
                   <div class="profile-figures">
                      <div class="w-row">
                      <a class="w-block" data-load="1" href="loads.html">
@@ -95,54 +105,102 @@
                         </a>
                      </div>
                   </div>
+                  </div>
+                  <div class="customer">
+                  <div class="profile-figures">
+                     <div class="w-row">
+                      
+                        <div class="w-col w-col-4 w-col-small-4 w-col-tiny-4">
+                           <div class="profile-figures-column-group">
+                              <div class="profile-figures-number"></div>
+                              <div class="profile-figures-title"></div>
+                           </div>
+                        </div>
+                       
+                        <a class="w-block" data-load="1" href="customer_inventory.html">
+                        <div class="w-col w-col-4 w-col-small-4 w-col-tiny-4">
+                           <div class="profile-figures-column-group">
+                              <div class="profile-figures-number" id="myinv"></div>
+                              <div class="profile-figures-title">My Inventory</div>
+                           </div>
+                        </div>
+                        </a>
+                         
+                        <div class="w-col w-col-4 w-col-small-4 w-col-tiny-4">
+                           <div class="profile-figures-column-group">
+                              <div class="profile-figures-number"></div>
+                              <div class="profile-figures-title"></div>
+                           </div>
+                        </div>
+                        
+                        
+                        
+                     </div>
+                  </div>
+                  </div>
                </div>
                <nav class="bg-gradient w-nav-menu fullwidth" role="navigation">
                      
-                    
-<a class="nav-menu-link w-clearfix w-inline-block" data-load="1" href="add-load.html">
+ <!--customer menu -->    
+<div class="customer">               
+<a class="nav-menu-link w-clearfix w-inline-block" data-load="1" href="customer_inventory.html">
+<div class="icon-list-menu">
+<i class="fa fa-tasks"></i> 
+</div>
+<div class="nav-menu-titles">My Inventory</div>
+</a>
+<a class="nav-menu-link w-clearfix w-inline-block" data-load="1" href="settings.html">
+<div class="icon-list-menu">
+<i class="fa fa-user"></i> 
+</div>
+<div class="nav-menu-titles">My Profile</div>
+</a>
+</div>
+<!--customer menu -->
+<a class="nav-menu-link user w-clearfix w-inline-block" data-load="1" href="add-load.html">
 <div class="icon-list-menu">
 <i class="fa fa-tasks"></i> 
 </div>
 <div class="nav-menu-titles">Add Load</div>
 </a>
-<a class="nav-menu-link w-clearfix w-inline-block" data-load="1" href="add-warrant.html">
+<a class="nav-menu-link user w-clearfix w-inline-block" data-load="1" href="add-warrant.html">
 <div class="icon-list-menu">
    <i class="fa fa-file"></i>
 </div>
 <div class="nav-menu-titles">Add Warrant</div>
 </a>
-<a class="nav-menu-link w-clearfix w-inline-block" data-load="1" href="add-bundle.html">
+<a class="nav-menu-link user w-clearfix w-inline-block" data-load="1" href="add-bundle.html">
 <div class="icon-list-menu">
    <i class="fa fa-support"></i> 
 </div>
 <div class="nav-menu-titles">Add Bundle</div>
 </a>
-<a class="nav-menu-link w-clearfix w-inline-block" data-load="1" href="loads.html">
+<a class="nav-menu-link user w-clearfix w-inline-block" data-load="1" href="loads.html">
 <div class="icon-list-menu">
 <i class="fa fa-copy"></i> 
 </div>
 <div class="nav-menu-titles">Load Records</div>
 </a>
-<a class="nav-menu-link w-clearfix w-inline-block" data-load="1" href="warrants.html">
+<a class="nav-menu-link user w-clearfix w-inline-block" data-load="1" href="warrants.html">
 <div class="icon-list-menu">
 <i class="fa fa-edit"></i> 
 </div>
 <div class="nav-menu-titles">Warrant Records</div>
 </a>
-<a class="nav-menu-link w-clearfix w-inline-block" data-load="1" href="bundles.html">
+<a class="nav-menu-link user w-clearfix w-inline-block" data-load="1" href="bundles.html">
 <div class="icon-list-menu">
 <i class="fa fa-paste"></i> 
 </div>
 <div class="nav-menu-titles">Bundle Records</div>
 </a>
 
-<a class="nav-menu-link w-clearfix w-inline-block admin" data-load="1" href="load-report.html">
+<a class="nav-menu-link user w-clearfix w-inline-block admin" data-load="1" href="load-report.html">
 <div class="icon-list-menu">
    <i class="fa fa-align-justify"></i> 
 </div>
 <div class="nav-menu-titles">Load Reports</div>
 </a>
-<a class="nav-menu-link w-clearfix w-inline-block admin" data-load="1" href="warrant-report.html">
+<a class="nav-menu-link user w-clearfix w-inline-block admin" data-load="1" href="warrant-report.html">
 <div class="icon-list-menu">
    <i class="fa fa-align-center"></i> 
 </div>

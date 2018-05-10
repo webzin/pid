@@ -1,3 +1,26 @@
+<script> 	  
+
+$(document).ready(function(){
+ 
+	if (localStorage.ut == "A") {
+		$(".customer").hide();
+		$(".admin").show();
+	}
+	if (localStorage.ut == "U") {
+		$(".admin").hide();
+		$(".customer").hide();
+		
+	} 
+	if (localStorage.ut == "C") {
+	$(".customer").show();
+	$(".admin").hide();
+	$(".user").hide();
+	
+	}
+ 
+}); 
+	
+</script>
 <!--- FOOTER START -->
       <footer class="footer section-padding">
         <div class="container text-center">
@@ -6,8 +29,7 @@
               <div class="col-20 tablet-20"> <a href="profile.html" class="">
                 <div class="icon-div"> <i class="fa fa-user grow"></i> </div>
                 </a> </div>
-              
-              
+               	<div class="user" id="user">
                 <div class="col-20 tablet-20"> <a href="loads.html" class="">
                 <div class="icon-div"> <i class="fa fa-tasks grow"></i> </div>
                 </a> </div>
@@ -17,6 +39,19 @@
                 <div class="col-20 tablet-20"> <a href="bundles.html" class="">
                 <div class="icon-div"> <i class="fa fa-support grow"></i> </div>
                 </a> </div>
+                </div>
+                
+                <div class="customer">
+                <div class="col-20 tablet-20"> <a href="customer_inventory.html" class="">
+                <div class="icon-div"> <i class="fa fa-tasks grow"></i> </div>
+                </a> </div>
+                <div class="col-20 tablet-20"> <a href="settings.html" class="">
+                <div class="icon-div"> <i class="fa fa-cog grow"></i> </div>
+                </a> </div>
+                <div class="col-20 tablet-20"> <a href="mailto:info@webzin.in" class="">
+                <div class="icon-div"> <i class="fa fa-envelope grow"></i> </div>
+                </a> </div>
+                </div>
               <div class="col-20 tablet-20"> <a href="tel:+919040038535">
                 <div class="icon-div"> <i class=" fa fa-phone grow"></i> </div>
                 </a> </div>

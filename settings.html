@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <title>Settings</title>
+      <meta content="width=device-width,initial-scale=1" name="viewport">
+      <meta name="generator" content="SensationThemes">
+      <link href="css/normalize.css" rel="stylesheet" type="text/css">
+      <link href="css/webflow.css" rel="stylesheet" type="text/css">
+      <link href="css/styles.css" rel="stylesheet" type="text/css">
+      <link href="images/logo32.png" rel="shortcut icon" type="image/x-icon">
+      <link href="images/logo.png" rel="apple-touch-icon">
+      <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+      <link href="css/ionicons.min.css" rel="stylesheet" type="text/css">
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+         <script src="js/jquery.min.js" type="text/javascript"></script>
+ 		<script src="js/modernizr.js" type="text/javascript"></script>
+	   <script src="js/webflow.js" type="text/javascript"></script>
+	   <script type="text/javascript" src="js/scripts.js"></script>
+       <script type="text/javascript" src="js/jquery.validate.js"></script> 
+      <script type="text/javascript">
+    var url = window.location.pathname;
+    var filename = url.substring(url.lastIndexOf('/') + 1);
+    if (localStorage.login == "true" && filename == 'login.html') {
+        window.location.href = "profile.html";
+    } else if (localStorage.login == null) {
+        window.location.href = "login.html";
+    } else if (localStorage.login == "false" && filename != 'login.html') {
+        window.location.href = "login.html";
+    }
+    </script>
+    <script> 
+$(function(){
+$("#navbarin").load("nav.html"); 
+$("#footer").load("footer.html"); 
+});
+ 
+	
+	$(document).ready(function(){
+
+	//Displaying user email on home page
+	$("#fullname").val(localStorage.name); 
+	$("#phoneno").val(localStorage.mobile); 
+	$("#email").val(localStorage.email);
+	$("#address").val(localStorage.addr);
+	$("#city").val(localStorage.city);
+	$("#state").val(localStorage.state);
+	$("#country").val(localStorage.cont);
+	$("#compname").val(localStorage.comp);
+	$("#zip").val(localStorage.zip);
+ 
+	  
+	  $('#updateform').validate({ // initialize the plugin
+					rules: {
+					compname: {
+					required: function(element){
+					return $("#ctype").val() == "C";
+					}
+					},
+					fullname: {
+					required: true,
+					},
+					email: {
+					required: true,
+					email: true,
+					},
+					phoneno: {
+					required: true,
+					number: true,
+					minlength: 10, 
+					maxlength: 10,
+					},
+					password: {
+					required: true,
+					},
+					address: {
+					required: true,
+					},
+					city: {
+					required: true,
+					},
+					
+					state: {
+					required: true,
+					},
+					country: {
+					required: true,
+					},
+					zip: {
+					required: true,
+					number: true,
+					minlength: 5,
+					maxlength: 6,
+					},
+					
+					
+}
+       
+    });
+  //Signup function
+    $("#updateform").submit(function(){
+		var	compname=$("#compname").val();
+    	var fullname=$("#fullname").val();
+    	var email=$("#email").val();
+		var phoneno=$("#phoneno").val();
+    	var password=$("#password").val();
+		var ctype=$("#ctype").val();
+		var city=$("#city").val();
+		var	state=$("#state").val();
+		var	country=$("#country").val();
+		var	address=$("#address").val();
+		var	zip=$("#zip").val();
+		var ctype=(localStorage.ut);
+		var uid=(localStorage.uid);
+		var dataString="fullname="+fullname+"&compname="+compname+"&email="+email+"&phoneno="+phoneno+"&password="+password+"&ctype="+ctype+"&city="+city+"&state="+state+"&country="+country+"&address="+address+"&zip="+zip+"&id="+uid+"&update=";
+
+    	if($.trim(fullname).length>0 & $.trim(email).length>0 & $.trim(phoneno).length>0)
+		{
+			$.ajax({
+				type: "POST",
+				url: hosturl+"auth1.php?callback=?",
+				data: dataString,
+				crossDomain: true,
+				cache: false,
+				beforeSend: function(){ 
+				$("#update").val('Updating Data...');
+				 
+				},
+				success: function(data, status){
+				var resp = $.parseJSON(data);	
+				
+				$('#sucessMessage').html(resp.value1);
+				$('#sucessMessage').show();
+				$('#sucessMessage').delay(5000).fadeOut();
+				 
+				$('#sucessMessage').html('<div class="green">Data Updated</div>');
+				$("#update").val('Update')
+				localStorage.clear();
+				
+				localStorage.login="true";
+				localStorage.email=email;
+				localStorage.comp=resp.value2;
+				localStorage.name=resp.value3;
+				localStorage.mobile=resp.value4;
+				localStorage.addr=resp.value5;
+				localStorage.city=resp.value6;
+				localStorage.state=resp.value7;
+				localStorage.cont=resp.value8;
+				localStorage.ut=resp.value9;
+				localStorage.uid=resp.value10;
+				localStorage.zip=resp.value11;
+				
+				//window.location.href = "profile.html";
+				 
+				 
+				}
+			});
+		}return false;
+
+    });
+	
+	});
+	
+    </script>
+   </head>
+   <body>
+      <section class="mobile-wrapper">
+         <div class="w-embed"></div>
+         <div class="page-content" id="main-stack">
+            <div class="navbar w-nav" data-animation="default" data-collapse="all" data-duration="700" id="navbarin">
+         
+         </div>
+            <div class="body padding">
+            <div id="sucessMessage"> </div>
+            <div class="w-form">
+            <form action="#" data-name="update" id="updateform" name="updateform">
+            <div class="separator-button-input"></div>
+            <div class="customer">
+            <label class="label-form" for="compname">Company NAME</label>
+            <input class="input-form w-input" data-name="compname" id="compname" maxlength="256" name="compname"  type="text">
+            <div class="separator-fields"></div>
+            </div>
+            <div>
+            <label class="label-form" for="fullname">FULL NAME</label>
+            <input class="input-form w-input" data-name="fullname" id="fullname" maxlength="256" name="fullname"  type="text">
+            <div class="separator-fields"></div>
+            </div>
+            <div>
+            <label class="label-form" for="email">EMAIL</label>
+            <input class="input-form w-input" data-name="email" id="email" maxlength="256" name="email"  type="email" value="">
+            <div class="separator-fields"></div>
+            </div>
+            <div>
+            <label class="label-form" for="password">PASSWORD</label>
+            <input class="input-form w-input" data-name="password" id="password" maxlength="256" name="password"  type="password" value="">
+            <div class="separator-fields"></div>
+            </div>
+            <div>
+            <label class="label-form" for="phoneno">Mobile</label>
+            <input class="input-form w-input" data-name="phoneno" id="phoneno" maxlength="256" name="phoneno"  type="number">
+            <div class="separator-fields"></div>
+            </div>
+            <div>
+            <label class="label-form" for="field">Address</label>
+            <input class="input-form w-input" data-name="address" id="address" maxlength="256" name="address"  type="text">
+            <div class="separator-fields"></div>
+            </div>
+            <div>
+            <label class="label-form" for="node-10">City</label>
+            <div class="separator-fields"></div>
+            <input class="input-form w-input" data-name="city" id="city" maxlength="256" name="city"  type="text">
+            </div>
+            
+            <div class="separator-fields"></div>
+            <div>
+            <label class="label-form" for="node-10">State</label>
+            <div class="separator-fields"></div>
+            <input class="input-form w-input" data-name="state" id="state" maxlength="256" name="state"  type="text">
+            </div>
+            
+            <div class="separator-fields"></div>
+            <div>
+            <label class="label-form" for="node-10">Country</label>
+            <div class="separator-fields"></div>
+            <input class="input-form w-input" data-name="country" id="country" maxlength="256" name="country"  type="text">
+            </div>
+            <div>
+            <label class="label-form" for="node-10">Zip</label>
+            <div class="separator-fields"></div>
+            <input class="input-form w-input" data-name="zip" id="zip" maxlength="256" name="zip"  type="number">
+            </div>
+   
+            <div class="separator-button-input"></div>
+            <input class="action-button w-button" data-wait="Please wait..." type="submit" value="Update" id="update">
+            <div class="separator-button"></div>
+             
+            </form>
+            </div>
+            </div>
+         </div>
+         <div class="loading-mask page-content" id="new-stack">
+            <div class="loading-icon">
+               <div class="icon ion-load-d navbar-button-icon"></div>
+            </div>
+         </div>
+      </section>
+      <script src="js/webfont.js"></script><script type="text/javascript">WebFont.load({
+         google: {
+           families: ["Montserrat:400,700"]
+         }
+         });
+      </script> 
+       <div id="footer"></div>
+   </body>
+</html>

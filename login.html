@@ -28,6 +28,8 @@
   //Login Function
 $(document).ready(function(){
 	  
+	  $("#email").val(localStorage.eml);
+	  
 	  $('#signin').validate({ // initialize the plugin
         rules: {
             email: {
@@ -75,10 +77,17 @@ $("#signin").submit(function(event){
 				if(resp.value2=="S"){
 				localStorage.login="true";
 				localStorage.email=email;
+				localStorage.comp=resp.value11;
 				localStorage.name=resp.value3;
 				localStorage.mobile=resp.value4;
-				localStorage.ut=resp.value5;
-				window.location.href = "profile.html";
+				localStorage.addr=resp.value5;
+				localStorage.city=resp.value6;
+				localStorage.state=resp.value7;
+				localStorage.cont=resp.value8;
+				localStorage.ut=resp.value9;
+				localStorage.uid=resp.value10;
+			 	window.location.href = "profile.html";
+				 
 				}
 				else{
 				$("#login").val('Login');

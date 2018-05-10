@@ -1,5 +1,5 @@
-var hosturl="http://198.38.88.53/pid/";
-/*var hosturl="http://192.168.1.100/pid/";*/
+/*var hosturl="http://198.38.88.53/pid/";*/
+var hosturl="http://192.168.1.100/pid/";
 
 /*! Extra inline scripts: atlanta-mobile.original 2016-12-29 */
     document.addEventListener("touchstart", function(){}, true);
@@ -203,6 +203,12 @@ $(document).ready(function(){
 	
 	if (localStorage.ut == "U") {
 		$(".admin").hide();
+	} 
+	if (localStorage.ut == "C") {
+		$(".customer").show();
+		$(".admin").hide();
+		$(".user").hide();
+	
 	} 
 	  
 }); 

@@ -7,9 +7,19 @@ $(document).ready(function(){
 	window.location.href = "login.html";
 	});
 	
+	if (localStorage.ut == "A") {
+		$(".customer").hide();
+	}
 	if (localStorage.ut == "U") {
 		$(".admin").hide();
+		$(".customer").hide();
 	} 
+	if (localStorage.ut == "C") {
+	$(".customer").show();
+	$(".admin").hide();
+	$(".user").hide();
+	
+	}
  
 }); 
 	
@@ -30,6 +40,23 @@ $(document).ready(function(){
 </div>
 <div class="nav-menu-titles">Home</div>
 </a>
+ <!--customer menu -->    
+<div class="customer">               
+<a class="nav-menu-link w-clearfix w-inline-block" data-load="1" href="customer_inventory.html">
+<div class="icon-list-menu">
+<i class="fa fa-tasks"></i> 
+</div>
+<div class="nav-menu-titles">My Inventory</div>
+</a>
+<a class="nav-menu-link w-clearfix w-inline-block" data-load="1" href="settings.html">
+<div class="icon-list-menu">
+<i class="fa fa-user"></i> 
+</div>
+<div class="nav-menu-titles">My Profile</div>
+</a>
+</div>
+<!--customer menu -->
+<div class="user">
 <a class="nav-menu-link w-clearfix w-inline-block" data-load="1" href="add-load.html">
 <div class="icon-list-menu">
 <i class="fa fa-tasks"></i> 
@@ -67,7 +94,7 @@ $(document).ready(function(){
 </div>
 <div class="nav-menu-titles">Bundle Records</div>
 </a>
-
+</div>
 <a class="nav-menu-link w-clearfix w-inline-block admin" data-load="1" href="load-report.html">
 <div class="icon-list-menu">
    <i class="fa fa-align-justify"></i> 

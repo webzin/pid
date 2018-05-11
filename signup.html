@@ -102,18 +102,17 @@
 				cache: false,
 				beforeSend: function(){ 
 				$("#sign-up").val('Signing You With Us...');
-				 
 				},
-				success: function(data){
-					
-				$('#sucessMessage').html(data);
+				success: function(data, status){
+				
+				var resp = $.parseJSON(data);
+				
+				$('#sucessMessage').html(resp.value1);
 				$('#sucessMessage').show();
 				$('#sucessMessage').delay(5000).fadeOut();
-				
-				if(data=="success")
-				{
+ 				$("#login").val('Login');
+				if(resp.value2=="S"){
 				localStorage.eml=email;
-				$('#sucessMessage').html('<div class="green">Thank you for Registering with us! you can login now</div>');
 				window.location.href = "login.html";
 				}
 				 

@@ -37,6 +37,7 @@
 				$("#footer").load("footer.html"); 
 				});
 				
+			
 $(document).ready(function(){
 				var wid = localStorage.getItem('wid');
 				$('#warantno').load(hosturl+'mobdata.php?action=wr&wd='+wid, '', function(response, status, xhr) {
@@ -45,10 +46,14 @@ $(document).ready(function(){
 				});
 				$('#brand').load(hosturl+'mobdata.php?action=br', '', function(response, status, xhr) {
 				});
+				$('#total').load(hosturl+'mobdata.php?action=tlw&wr='+wid, '', function(response, status, xhr) { });
+				$('#total').show();
+  				$('#totals').load(hosturl+'mobdata.php?action=tsw&wr='+this.value, '', function(response, status, xhr) { });
+				$('#totals').show();
 				$('#warantno').on('change', function() {
 				$('#total').load(hosturl+'mobdata.php?action=tlw&wr='+this.value, '', function(response, status, xhr) { });
 				$('#total').show();
-				/*$('#totals').load(hosturl+'mobdata.php?action=tsw&wr='+this.value, '', function(response, status, xhr) { });*/
+				
 				});
 				$('#listw').focusout(function() {
 				var total=$("#total").text();

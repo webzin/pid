@@ -1,4 +1,4 @@
-var hosturl="http://198.38.88.53/pid/";
+var hosturl="http://wordpress-guru.net/pid/";
 /*var hosturl="http://192.168.1.100/pid/";*/
 
 /*! Extra inline scripts: atlanta-mobile.original 2016-12-29 */
